@@ -44,25 +44,23 @@ extern "C" {
 typedef unsigned char u_8;
 typedef unsigned short u_16;
 typedef unsigned int u_32;
+typedef size_t Ysize_t;
 
-void* Ymalloc(u_32 size)
-{
-	void *p = NULL;
-	if (size > YINT_MAX)
-		return NULL;
-	else {
-		p = malloc(size);
-		if (!p)
-			return NULL;
-		memset(p, 0, size);
-	}
-	return p;
-}
+#define Yassert assert
 
-void Yfree(void *p)
-{
-	if (p) free(p);
-}
+void* Ymalloc(IN u_32 size);
+
+void Yfree(IN void *p);
+
+unsigned int Ystr_hash(IN const char *str);
+
+char * Ystrdup(const char *str);
+
+char * Ystrndup(char *str, int n);
+
+void * Ymemdup(void *mem, int n);
+
+int Ystrcmp(IN const char *a , IN const char *b);
 
 #endif
 
