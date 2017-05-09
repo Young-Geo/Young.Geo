@@ -131,15 +131,79 @@ static void _list_replace(Ylist_t *old_node,
 	new_node->prev->next = new_node;
 }
 
+static void _list_move_head(Ylist_t *Ylist, Ylist_t *d_node)
+{
+	if (d_node->next && d_node->prev)
+		_list_del(d_node);
+	_list_add(d_node, Ylist, Ylist->next);
+}
+
+static void _list_move_tail(Ylist_t *Ylist, Ylist_t *d_node)
+{
+	if (d_node->next && d_node->prev)
+		_list_del(d_node);
+	_list_add(d_node, Ylist->prev, Ylist);
+}
 
 
+static int _list_empty(Ylist_t *Ylist)
+{
+       return (Ylist->next == Ylist) && (Ylist->prev == Ylist);
+}
+
+int Ylist_isempty(Ylist_t *Ylist)
+{
+	return _list_empty(Ylist);
+}
+
+int Ylist_islast(Ylist_t *Yhead, Ylist_t *Ylast)
+{
+	return Ylast->next == Yhead;
+}
 
 
+#if 0
+static void _list_splice(Ylist_t *Ylist, Ylist_t *Ysp_list)
+{
+       struct Ylist_t *first = Ysp_list->next;
+       struct Ylist_t *last  = Ysp_list->prev;
+       struct Ylist_t *at    = Ylist->next;
+ 
+       first->prev = Ylist;
+       Ylist->next = first;
+ 
+       last->next = at;
+       at->prev = last;
+}
+#endif
+static void _list_splice(const Ylist_t *Ysp_list,
+				 Ylist_t *prev,
+				 Ylist_t *next)
+{
+	Ylist_t *first = Ylist->next;
+	Ylist_t *last = Ylist->prev;
 
+	first->prev = prev;
+	prev->next = first;
 
+	last->next = next;
+	next->prev = last;
+}
 
+static void _list_rotate_left(Ylist_t *Ylist)
+{
+	Ylist_t *first;
 
+	if (!Ylist_isempty(Ylist)) {
+		first = Ylist->next;
+		_list_move_tail(Ylist, first);
+	}
+}
 
+int Ylist_rotate_left(Ylist_t *Ylist)
+{
+	_list_rotate_left(Ylist);
+}
 
 
 

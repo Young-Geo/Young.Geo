@@ -14,3 +14,10 @@ int 	Ylist_add_tail(Ylist_t *, Node_t *);
 
 Node_t* Ylist_del_head(Ylist_t *, int);
 Node_t* Ylist_del_tail(Ylist_t *, int);
+
+int Ylist_isempty(Ylist_t *);
+int Ylist_islast(Ylist_t *Yhead, Ylist_t *Ylast);
+int Ylist_rotate_left(Ylist_t *Ylist);
+
+
+
