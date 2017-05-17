@@ -205,6 +205,46 @@ int Ylist_rotate_left(Ylist_t *Ylist)
 	_list_rotate_left(Ylist);
 }
 
+int Ylist_clear(Ylist_t *Ylist)
+{
+	if (!Ylist)
+	{
+		return -1;
+	}
+	for ( ; ; )
+	{
+		if (Ylist->next == Ylist && Ylist->prev == Ylist)
+			break;
+		Ylist_del_head(Ylist, 1);
+	}
+	return 0;
+}
+
+int Ylist_destory(Ylist_t *Ylist)
+{
+	if (!Ylist)
+	{
+		return -1;	
+	}
+	Ylist_clear(Ylist);
+	Yfree(Ylist);
+	return 0;
+}
+
+int	Ylist_length(Ylist_t *Ylist)
+{
+	unsigned int size = 0;
+	Ylist_t *head = NULL, *Ynode;
+	if (!Ylist)
+	{
+		return -1;
+	}
+	for (head = Ylist, Ynode = Ylist->next; Ynode != head; Ynode = Ynode->next && Ynode->next)
+	{
+		++size;
+	}
+	return size;
+}
 
 
 
