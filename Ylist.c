@@ -1,21 +1,19 @@
 #include "Ylist.h"
 
 
-static int _list_init(Ylist_t *Ylist)
+static void _list_init(Ylist_t *Ylist)
 {
-	if (!Ylist)
-		return -1;
 	Ylist->next = Ylist;
 	Ylist->prev = Ylist;
-	return 0;
 }
 
 
 Ylist* Ylist_init()
 {
 	Ylist_t *Ylist = Ymalloc(sizeof(Ylist_t));
-	if (_list_init(Ylist))
+	if (!Ylist)
 		return NULL;
+	_list_init(Ylist);
 	return Ylist;
 }
 
@@ -205,6 +203,27 @@ int Ylist_rotate_left(Ylist_t *Ylist)
 	_list_rotate_left(Ylist);
 }
 
+int Ylist_push(Ylist_t *Ylist, Node_t *node)
+{
+	return Ylist_add_head(Ylist, node);
+}
+Ylist_t * Ylist_pop(Ylist_t *Ylist)
+{
+	Ylist_t *entry = NULL;
+	if (!Ylist || !Ylist->next)
+		return NULL;
+	
+	entry = Ylist->next;
+	if (entry == Ylist)
+		return NULL;
+	
+	_list_del(entry);
+	return entry;
+}
+Node_t * Ylist_popv(Ylist_t *Ylist)
+{
+	return Ylist_del_head(Ylist, 0);
+}
 
 
 

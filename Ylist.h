@@ -19,5 +19,8 @@ int Ylist_isempty(Ylist_t *);
 int Ylist_islast(Ylist_t *Yhead, Ylist_t *Ylast);
 int Ylist_rotate_left(Ylist_t *Ylist);
 
+int Ylist_push(Ylist_t *, Node_t *);
+Ylist_t * Ylist_pop(Ylist_t *);
+Node_t * Ylist_popv(Ylist_t *);
 
 
