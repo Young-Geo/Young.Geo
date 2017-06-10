@@ -22,13 +22,7 @@ int Ylist_isempty(Ylist_t *);
 int Ylist_islast(Ylist_t *Yhead, Ylist_t *Ylast);
 int Ylist_rotate_left(Ylist_t *Ylist);
 
-<<<<<<< HEAD
 int Ylist_push(Ylist_t *, Node_t *);
 Ylist_t * Ylist_pop(Ylist_t *);
 Node_t * Ylist_popv(Ylist_t *);
-=======
 int	Ylist_length(Ylist_t*);
-
->>>>>>> 7146a4cb6d5c6389acee92c24ef47c51f2a81489
-
-

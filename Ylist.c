@@ -203,7 +203,6 @@ int Ylist_rotate_left(Ylist_t *Ylist)
 	_list_rotate_left(Ylist);
 }
 
-<<<<<<< HEAD
 int Ylist_push(Ylist_t *Ylist, Node_t *node)
 {
 	return Ylist_add_head(Ylist, node);
@@ -224,7 +223,7 @@ Ylist_t * Ylist_pop(Ylist_t *Ylist)
 Node_t * Ylist_popv(Ylist_t *Ylist)
 {
 	return Ylist_del_head(Ylist, 0);
-=======
+}
 int Ylist_clear(Ylist_t *Ylist)
 {
 	if (!Ylist)
@@ -264,7 +263,6 @@ int	Ylist_length(Ylist_t *Ylist)
 		++size;
 	}
 	return size;
->>>>>>> 7146a4cb6d5c6389acee92c24ef47c51f2a81489
 }
 
 
